@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'MapQuest API' do 
     it "sends latitude and longitude for specified city" do 
 
-     get "/geocode/DenverCO" 
+     post "/geocode/DenverCO" 
 
 
     

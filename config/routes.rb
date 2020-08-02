@@ -6,6 +6,6 @@ Rails.application.routes.draw do
     end 
   end 
 
-  post "/geocode/:location", to: "geocode#show" 
+  post "/geocode/:location", to: "geocode#index" 
 
 end

@@ -33,6 +33,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails'
   gem 'figaro'
+  gem 'pry'
 
 end
 
@@ -49,3 +50,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rspec-rails'
 #gem 'fast_jasonapi'
 gem 'faker'
+gem 'faraday'
+
