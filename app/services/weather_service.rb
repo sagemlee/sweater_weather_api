@@ -7,12 +7,10 @@ class WeatherService
     end 
 
     def forecast(lat, long)
-        binding.pry
         response = conn.get("data/2.5/onecall") do |f|
             f.params["lat"] = lat
             f.params["lon"] = long
         end 
-        weather_json = JSON.parse(response.body, symbolize_names: true)
-        binding.pry
+        JSON.parse(response.body, symbolize_names: true)
     end 
 end 

@@ -16,4 +16,7 @@ class SearchResults
     def forecast(lat,long)
         @weather.forecast(lat,long)
     end 
+
+    def hourly
+    end 
 end 
