@@ -4,6 +4,9 @@ describe 'MapQuest API' do
     it "sends latitude and longitude for specified city" do 
 
      post "/geocode/DenverCO" 
+    
+      
+
 
 
     

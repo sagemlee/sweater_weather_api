@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   end 
 
   post "/geocode/:location", to: "geocode#index" 
+  get "/weather/:geocode", to: "weather#index"
 
 end

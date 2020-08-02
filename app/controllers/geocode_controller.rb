@@ -1,18 +1,13 @@
 class GeocodeController < ApplicationController
-    def index 
-        conn = Faraday.new("http://www.mapquestapi.com") do |faraday| 
-            faraday.params["key"] = ENV["MAPQUEST_KEY"]
-        end 
+    def index
+        search_results = SearchResults.new
+        @lat = "39"
+        @lng = "-104"
+        # @lat = search_results.lat(params[:location])
+        # @lng = search_results.lng(params[:location])
 
-        response = conn.get("geocoding/v1/address") do |f| 
-            f.params["location"] = params[:location]
-        end  
-
-        json = JSON.parse(response.body, symbolize_names: true)
-        @geocode = json[:results].first[:locations].first[:latLng].map do |location|
-            binding.pry
-            Geocode.new(location[:lat], location[:lng])
-        end 
-            binding.pry
+        @forecast = search_results.forecast(@lat, @lng)
+# json[:results].first[:locations].first[:latLng]
+#         WeatherService.new(@geocode)
     end 
 end 
