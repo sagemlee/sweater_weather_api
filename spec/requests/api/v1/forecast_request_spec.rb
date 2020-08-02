@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'MapQuest API' do 
     it "sends latitude and longitude for specified city" do 
     
-      get "/api/v1/forecast?location=denver,co"
+      get "/api/v1/forecast", params: {location: "denver,co"}
 
       expect(response).to be_successful  
 
