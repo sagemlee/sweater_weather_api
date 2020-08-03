@@ -6,36 +6,29 @@ class Forecast
     # has_many :days 
     # has_many :hours
     def initialize(info)
+        current_time = Time.at(info[:current][:dt])
         @id = info[:current][:dt]
-        @date = info[:current][:dt]
-        @time = info[:current][:dt]
+        @time = current_time.strftime("%l:%M %p, %B %-d")
         @temp = info[:current][:temp]
         #@temp_high = info[:current][:temp][:max]
         #@temp_low = info[:current][:temp][:min]
-        @sunrise = info[:current][:sunrise]
-        @sunset = info[:current][:sunrise]
+        @sunrise = Time.at(info[:current][:sunrise]).strftime("%l:%M %p")
+        @sunset = Time.at(info[:current][:sunset]).strftime("%l:%M %p")
         @feels_like = info[:current][:feels_like]
         @humidity = info[:current][:humidity]
         @uvi = info[:current][:uvi]
         @visibility = info[:current][:visibility]
         @description = info[:current][:weather].first[:description]
-        @icon = info[:current][:weather].first[:icon]
+        @icon = "http://openweathermap.org/img/wn/#{info[:current][:weather].first[:icon]}@2x.png"
 
         #for each
         @hours = info[:hourly][0..7].map do |hour|
             time_in_hours = Time.at(hour[:dt])
 
-            {"time" => time_in_hours.strftime("%I:%M %p"),  
+            {"time" => time_in_hours.strftime("%l:%M %p"),  
             "temp" => hour[:temp],
-            "icon" => hour[:weather].first[:icon]}
+            "icon" => "http://openweathermap.org/img/wn/#{hour[:weather].first[:icon]}@2x.png"}
         end 
-        # @date = info[:dt]
-        # @temp_high = info[:temp][:max]
-        # @temp_low  =  info[:temp][:min]
-        # @description = info[:weather][:description]
-        # @icon = info[:weather][:icon]
-        # @rain = info[:rain]
-
         #for each hour 
         @days = info[:daily][0..4].map do |day|
            weekday = Time.at(day[:dt])
@@ -43,16 +36,12 @@ class Forecast
            "temp_high" => day[:temp][:max],
            "temp_low" => day[:temp][:min],
            "description" => day[:weather].first[:description],
-           "icon" => day[:weather].first[:icon],
+           "icon" => "http://openweathermap.org/img/wn/#{day[:weather].first[:icon]}@2x.png",
            "rain" => day[:rain] 
         }
     end 
     binding.pry
-        # @time = info[:dt]
-        # @temp = info[:temp]
-        # @description = info[:weather].first[:description]
-        # @icon = info[:weather].first[:icon]
-
+       
     end 
     
 end 
