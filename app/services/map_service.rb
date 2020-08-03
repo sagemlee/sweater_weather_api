@@ -10,7 +10,6 @@ class MapService
         response = conn.get("geocoding/v1/address") do |f| 
             f.params["location"] = params
         end  
-        json = JSON.parse(response.body, symbolize_names: true)
-        json[:results].first[:locations].first[:latLng]
+        JSON.parse(response.body, symbolize_names: true)
     end
 end 

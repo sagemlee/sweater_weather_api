@@ -2,11 +2,13 @@ require 'time'
 class Forecast 
     attr_reader :id, :date, :time, :temp, :temp_high, :temp_low,
     :sunrise, :sunset, :feels_like, :humidity, :uvi, :visibility, 
-    :description, :icon, :hours, :days, :background_image
+    :description, :icon, :hours, :days, :background_image, :city, :country
   
-    def initialize(info, image)
+    def initialize(info, image, city, country)
         current_time = Time.at(info[:current][:dt])
         @id = info[:current][:dt]
+        @city = city
+        @country = country
         @time = current_time.strftime("%l:%M %p, %B %-d")
         @temp = info[:current][:temp]
         @temp_high = info[:daily].first[:temp][:max]
