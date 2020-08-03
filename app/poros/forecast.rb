@@ -2,9 +2,9 @@ require 'time'
 class Forecast 
     attr_reader :id, :date, :time, :temp, :temp_high, :temp_low,
     :sunrise, :sunset, :feels_like, :humidity, :uvi, :visibility, 
-    :description, :icon, :hours, :days, :background_image, :city, :country
+    :description, :icon, :hours, :days, :city, :country
   
-    def initialize(info, image, city, country)
+    def initialize(info, city, country)
         current_time = Time.at(info[:current][:dt])
         @id = info[:current][:dt]
         @city = city
@@ -38,6 +38,5 @@ class Forecast
            "rain" => day[:rain] 
             }
         end      
-        @background_image = image 
     end 
 end 

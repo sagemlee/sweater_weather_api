@@ -11,6 +11,5 @@ class ImageService
             f.params["query"] = params
         end  
         json = JSON.parse(response.body, symbolize_names: true)
-        json[:results].first[:urls][:regular]
     end
 end 
