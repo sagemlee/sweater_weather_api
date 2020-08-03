@@ -10,6 +10,8 @@ class WeatherService
         response = conn.get("data/2.5/onecall") do |f|
             f.params["lat"] = lat
             f.params["lon"] = long
+            f.params["exclude"] = "minutely"
+            f.params["units"] = "imperial"
         end 
         JSON.parse(response.body, symbolize_names: true)
     end 

@@ -5,6 +5,7 @@ class SearchController < ApplicationController
         @lng = search_results.lng(params[:location])
 
         @forecast = search_results.forecast(@lat, @lng)
+        @forecast = search_results.hourly_info(@lat, @lng)
         binding.pry  
     end 
 end 
