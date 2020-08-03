@@ -3,6 +3,7 @@ class SearchResults
     def initialize
         @newmap =  MapService.new
         @weather = WeatherService.new
+        @image = ImageService.new
     end 
 
     def lat(location)
@@ -17,5 +18,7 @@ class SearchResults
         @weather.forecast(lat,long)
     end 
 
-
+    def image(query)
+        @image.image(query)
+    end 
 end 
