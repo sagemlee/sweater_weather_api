@@ -10,8 +10,8 @@ class Forecast
         @id = info[:current][:dt]
         @time = current_time.strftime("%l:%M %p, %B %-d")
         @temp = info[:current][:temp]
-        #@temp_high = info[:current][:temp][:max]
-        #@temp_low = info[:current][:temp][:min]
+        @temp_high = info[:daily].first[:temp][:max]
+        @temp_low = info[:daily].first[:temp][:min]
         @sunrise = Time.at(info[:current][:sunrise]).strftime("%l:%M %p")
         @sunset = Time.at(info[:current][:sunset]).strftime("%l:%M %p")
         @feels_like = info[:current][:feels_like]
@@ -30,7 +30,7 @@ class Forecast
             "icon" => "http://openweathermap.org/img/wn/#{hour[:weather].first[:icon]}@2x.png"}
         end 
         #for each hour 
-        @days = info[:daily][0..4].map do |day|
+        @days = info[:daily][1..5].map do |day|
            weekday = Time.at(day[:dt])
            {"day" => weekday.strftime("%A"),
            "temp_high" => day[:temp][:max],
