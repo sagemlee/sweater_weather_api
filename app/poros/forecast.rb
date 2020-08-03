@@ -1,3 +1,4 @@
+require 'time'
 class Forecast 
     attr_reader :id, :date, :time, :temp, :temp_high, :temp_low,
     :sunrise, :sunset, :feels_like, :humidity, :uvi, :visibility, 
@@ -22,7 +23,9 @@ class Forecast
 
         #for each
         @hours = info[:hourly][0..7].map do |hour|
-            {"time" => hour[:dt],  
+            time_in_hours = Time.at(hour[:dt])
+
+            {"time" => time_in_hours.strftime("%I:%M %p"),  
             "temp" => hour[:temp],
             "icon" => hour[:weather].first[:icon]}
         end 
@@ -35,15 +38,16 @@ class Forecast
 
         #for each hour 
         @days = info[:daily][0..4].map do |day|
-            {"day" => day[:dt].to_time,
-             "temp_high" => day[:temp][:max],
-             "temp_low" => day[:temp][:min],
-             "description" => day[:weather].first[:description],
-             "icon" => day[:weather].first[:icon],
-             "rain" => day[:rain] 
-            }
-            binding.pry
-        end 
+           weekday = Time.at(day[:dt])
+           {"day" => weekday.strftime("%A"),
+           "temp_high" => day[:temp][:max],
+           "temp_low" => day[:temp][:min],
+           "description" => day[:weather].first[:description],
+           "icon" => day[:weather].first[:icon],
+           "rain" => day[:rain] 
+        }
+    end 
+    binding.pry
         # @time = info[:dt]
         # @temp = info[:temp]
         # @description = info[:weather].first[:description]
