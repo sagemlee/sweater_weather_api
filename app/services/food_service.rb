@@ -7,10 +7,11 @@ class FoodService
         end 
     end 
         
-    def yelp(location, term)
+    def yelp(location, term, arrival_time)
         response = conn.get("v3/businesses/search") do |f|
             f.params["location"] = location
             f.params["term"] = term
+            f.params["open_at"] = arrival_time
         end 
         food = JSON.parse(response.body, symbolize_names: true)
         address = food[:businesses].first[:location][:display_address].join(", ")

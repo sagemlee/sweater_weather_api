@@ -24,4 +24,15 @@ class MapService
         hh, mm = mm.divmod(60)  
         "%d hours %d minutes" % [hh, mm]
     end 
+
+    def arrival_time(start, destination)
+        response = conn.get("directions/v2/route") do |f| 
+            f.params["from"] = start
+            f.params["to"] = destination
+        end  
+        route = JSON.parse(response.body, symbolize_names: true)
+        time = route[:route][:realTime]
+
+        Time.now.to_i + time 
+    end 
 end 
