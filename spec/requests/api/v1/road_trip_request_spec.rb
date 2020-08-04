@@ -27,11 +27,17 @@ describe 'Road Trip Endpoint' do
 
     end 
 
-    xit "will return error response with incorrect API key" do
+    it "will return error response with incorrect API key" do
         get "/api/v1/road_trip", params: {
             "origin": "Denver,CO",
             "destination": "Pueblo,CO",
             "api_key": "12343243124e"
+            }
+        expect(response.status).to eq(401) 
+
+        get "/api/v1/road_trip", params: {
+            "origin": "Denver,CO",
+            "destination": "Pueblo,CO"
             }
         expect(response.status).to eq(401)                 
     end 

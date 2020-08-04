@@ -1,6 +1,7 @@
 class RoadTrip
-    attr_reader :origin, :destination, :travel_time, :arrival_forecast
+    attr_reader :id, :origin, :destination, :travel_time, :arrival_forecast
     def initialize(origin, destination, arrival_forecast)
+        @id = "null"
         @map = MapService.new
         @origin = origin
         @destination = destination
