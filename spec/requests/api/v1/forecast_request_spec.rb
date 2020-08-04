@@ -4,8 +4,7 @@ describe 'Map service' do
     it "returns latitude and logitude" do
   
     location = SearchResults.new 
-    expect(location.lat("Denver,CO")).to eq(39.738453)
-    expect(location.lng("Denver,CO")).to eq(-104.984853)
+    expect(location.latlng("Denver,CO")).to eq({"lat": 39.738453, "lng": -104.984853})
     expect(location.city("Denver,CO")).to eq("Denver,CO")
     expect(location.country("Denver,CO")).to eq("US")
 
