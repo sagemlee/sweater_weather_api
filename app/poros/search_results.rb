@@ -3,7 +3,6 @@ class SearchResults
     def initialize
         @newmap =  MapService.new
         @weather = WeatherService.new
-       
     end 
 
     def latlng(location)
