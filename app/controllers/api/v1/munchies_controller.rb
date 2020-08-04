@@ -8,6 +8,7 @@ class Api::V1::MunchiesController < ApplicationController
         arrival_lat = search_results.lat(params[:end])
         arrival_lng = search_results.lng(params[:end])
         arrival_forecast = search_results.forecast(current_lat,current_lng)[:current][:weather].first[:description] 
-        food = Munchie.new(search_results.city(params[:start]), search_results.city(params[:end]), arrival_forecast, params[:food])
+        @food = Munchie.new(search_results.city(params[:start]), search_results.city(params[:end]), arrival_forecast, params[:food])
+        render json: MunchieSerializer.new(@food)
     end 
 end 
