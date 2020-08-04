@@ -1,27 +1,21 @@
 require 'rails_helper'
 
 describe 'Image Serializer' do 
-    it "returns image url" do
+  it "returns image url" do
   
-    post "/api/v1/users", params: {
-  "email": "whatever@example.com",
-  "password": "password",
-  "password_confirmation": "password"
-}
-    expect(response).to be_successful  
-    
-    user = JSON.parse(response.body, symbolize_names: true)
-    expect(user).to eq({
-  "data": {
-    "type": "users",
-    "id": "1",
-    "attributes": {
+      post "/api/v1/users", params: {
       "email": "whatever@example.com",
-      "api_key": "jgn983hy48thw9begh98h4539h4"
+      "password": "password",
+      "password_confirmation": "password"
     }
-  }
-})  
-    binding.pry
-   
-    end 
+        expect(response).to be_successful  
+
+        post "/api/v1/users", params: {
+      "email": "whatever@example.com",
+      "password": "password",
+      "password_confirmation": "password"
+    }
+    user = JSON.parse(response.body, symbolize_names: true)
+    expect(user).to eq({:errors=>["Email has already been taken"], :status=>400})     
+  end 
 end 
