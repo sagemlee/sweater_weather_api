@@ -12,8 +12,6 @@ describe 'Map service' do
     get "/api/v1/forecast", params: {location: "denver,co"}
     expect(response).to be_successful  
     
-    forecast = JSON.parse(response.body)
-    binding.pry
-   
+    forecast = JSON.parse(response.body)   
     end 
 end 

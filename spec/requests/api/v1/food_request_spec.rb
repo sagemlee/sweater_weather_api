@@ -3,13 +3,14 @@ require 'rails_helper'
 describe 'Food Endpoint' do 
   it "returns food and forecast for a given location" do
   
-      post "/api/v1/munchies", params: {
+      get "/api/v1/munchies", params: {
       "start": "denver,co",
       "end": "pueblo, co",
       "food": "chinese"
     }
     expect(response).to be_successful  
     food = JSON.parse(response.body, symbolize_names: true)
+    binding.pry
     expect(food).to eq({
   "data": {
     "id": "null",
