@@ -13,7 +13,5 @@ describe 'Map service' do
     expect(response).to be_successful  
     
     forecast = JSON.parse(response.body)
-    binding.pry
-   
     end 
 end 
