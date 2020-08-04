@@ -11,7 +11,17 @@ describe 'Food Endpoint' do
     expect(response).to be_successful  
     food = JSON.parse(response.body, symbolize_names: true)
     binding.pry
-    expect(food).to eq({
+    expect(food[:data][:id]).to eq("null")
+    expect(food[:data][:type]).to eq("munchie")
+    expect(food[:data][:attributes][:start_location]).to eq("Denver,CO")
+    expect(food[:data][:attributes][:end_location]).to eq("Pueblo,CO")
+    expect(food[:data][:attributes][:travel_time]).to_not be_empty
+    expect(food[:data][:attributes][:destination_forecast][:current]).to_not be_empty
+    expect(food[:data][:attributes][:destination_forecast][:current]).to_not be_empty
+    expect(food[:data][:attributes][:restaurant][:name]).to_not be_empty
+    expect(food[:data][:attributes][:restaurant][:address]).to_not be_empty
+    binding.pry    
+    expect(food[:data][:attributes]).to eq({
   "data": {
     "id": "null",
     "type": "munchie",

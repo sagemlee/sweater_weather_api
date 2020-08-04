@@ -24,5 +24,5 @@ class SearchResults
 
     def forecast_description(latlng)
         forecast(latlng)[:current][:weather].first[:description]
-    end 
+    end
 end 
