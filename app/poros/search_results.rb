@@ -6,6 +6,10 @@ class SearchResults
        
     end 
 
+    def latlng(location)
+        @newmap.latlong(location)[:results].first[:locations].first[:latLng]
+    end 
+
     def lat(location)
         @newmap.latlong(location)[:results].first[:locations].first[:latLng][:lat]
     end 
@@ -25,5 +29,8 @@ class SearchResults
 
     def forecast(lat,long)
         @weather.forecast(lat,long)
+    end 
+    def forecast_description(latlng)
+        @weather.forecast(latlng[:lat],latlng[:lng])[:current][:weather].first[:description]
     end 
 end 

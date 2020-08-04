@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'User Serializer' do 
-  it "returns image url" do
+  it "returns user api key" do
   
       post "/api/v1/users", params: {
       "email": "whatever@example.com",

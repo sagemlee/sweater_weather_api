@@ -7,7 +7,5 @@ describe 'Image Serializer' do
     expect(response).to be_successful  
     
     image = JSON.parse(response.body)
-    binding.pry
-   
     end 
 end 
