@@ -18,12 +18,14 @@ describe 'Food Endpoint' do
     "attributes": {
       "start_location": "Denver, CO",
       "end_location": "Pueblo, CO",
+      "travel_time": "1 hours 48 min",
       "destination_forecast": {
-        "current": "Cloudy with a chance of meatballs"
+        "current": "Cloudy with a chance of meatballs",
+        "arrival": "Rain with a pastability of hail"
       },
       "restaurant": {
-        "name": "Chinese Restaurant",
-        "address": "4602 N. Elizabeth St, Ste 120, Pueblo, CO 81008"
+        "name": "All Night Asian Food",
+        "address": "1234 Main St, Unit 12, Pueblo, CO 81009"
       }
     }
   }

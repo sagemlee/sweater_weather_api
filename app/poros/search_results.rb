@@ -6,13 +6,9 @@ class SearchResults
        
     end 
 
-    def lat(location)
-        @newmap.latlong(location)[:results].first[:locations].first[:latLng][:lat]
+    def latlng(location)
+        @newmap.latlong(location)[:results].first[:locations].first[:latLng]
     end 
-
-    def lng(location)
-        @newmap.latlong(location)[:results].first[:locations].first[:latLng][:lng] 
-    end
 
     def city(location)
         @newmap.latlong(location)[:results].first[:locations].first[:adminArea5] + "," +
@@ -23,7 +19,7 @@ class SearchResults
         @newmap.latlong(location)[:results].first[:locations].first[:adminArea1]
     end
 
-    def forecast(lat,long)
-        @weather.forecast(lat,long)
+    def forecast(latlng)
+        @weather.forecast(latlng[:lat],latlng[:lng])
     end 
 end 
