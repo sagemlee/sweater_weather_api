@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Image Serializer' do 
+describe 'User Serializer' do 
   it "returns image url" do
   
       post "/api/v1/users", params: {
