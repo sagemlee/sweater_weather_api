@@ -1,6 +1,6 @@
 require 'time'
 class Forecast 
-    attr_reader :id, :date, :time, :temp, :temp_high, :temp_low,
+    attr_reader :id, :time, :temp, :temp_high, :temp_low,
     :sunrise, :sunset, :feels_like, :humidity, :uvi, :visibility, 
     :description, :icon, :hours, :days, :city, :country
   
@@ -21,14 +21,23 @@ class Forecast
         @visibility = info[:current][:visibility]
         @description = info[:current][:weather].first[:description]
         @icon = "http://openweathermap.org/img/wn/#{info[:current][:weather].first[:icon]}@2x.png"
-        @hours = info[:hourly][0..7].map do |hour|
-            time_in_hours = Time.at(hour[:dt])
+        @hours = format_hours(info)
+        @days = format_days(info)      
+    end 
 
+    private 
+
+    def format_hours(info)
+        info[:hourly][0..7].map do |hour|
+            time_in_hours = Time.at(hour[:dt])
             {"time" => time_in_hours.strftime("%l:%M %p"),  
             "temp" => hour[:temp],
-            "icon" => "http://openweathermap.org/img/wn/#{hour[:weather].first[:icon]}@2x.png"}
+            "icon" => "http://openweathermap.org/img/wn/#{hour[:weather].first[:icon]}@2x.png"} 
         end 
-        @days = info[:daily][1..5].map do |day|
+    end 
+
+    def format_days(info) 
+        info[:daily][1..5].map do |day|
            weekday = Time.at(day[:dt])
            {"day" => weekday.strftime("%A"),
            "temp_high" => day[:temp][:max],
@@ -37,6 +46,6 @@ class Forecast
            "icon" => "http://openweathermap.org/img/wn/#{day[:weather].first[:icon]}@2x.png",
            "rain" => day[:rain] 
             }
-        end      
+        end
     end 
 end 
