@@ -2,12 +2,6 @@ require 'rails_helper'
 
 describe 'Forecast Enpoint' do 
     it "returns weather for a specified location" do
-  
-    # location = SearchResults.new 
-    # expect(location.lat("Denver,CO")).to eq(39.738453)
-    # expect(location.lng("Denver,CO")).to eq(-104.984853)
-    # expect(location.city("Denver,CO")).to eq("Denver,CO")
-    # expect(location.country("Denver,CO")).to eq("US")
 
     get "/api/v1/forecast", params: {location: "denver,co"}
     expect(response).to be_successful  
