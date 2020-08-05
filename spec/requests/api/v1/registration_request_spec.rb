@@ -1,16 +1,16 @@
 require 'rails_helper'
 
-describe 'User Serializer' do 
+describe 'User Endpoint' do 
   it "returns user api key" do
   
-      post "/api/v1/users", params: {
+    post "/api/v1/users", params: {
       "email": "whatever@example.com",
       "password": "password",
       "password_confirmation": "password"
     }
-        expect(response).to be_successful  
+    expect(response).to be_successful  
 
-        post "/api/v1/users", params: {
+    post "/api/v1/users", params: {
       "email": "whatever@example.com",
       "password": "password",
       "password_confirmation": "password"
